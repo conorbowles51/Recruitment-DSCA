@@ -1,1 +1,1 @@
-console.log("Client started!");
+console.log("Test");
