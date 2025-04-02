@@ -4,10 +4,10 @@ package hiring;
 
 service HiringService {
     // server streaming
-    rpc SearchCandidates(CandidateSearchRequest) returns (stream CandidateInfo);
+    rpc SearchCandidates(stream CandidateSearchRequest) returns (stream CandidateInfo);
 
     // bi-directional streaming
-    rpc BatchHireCandidates(stream CandidateRequest) returns (stream StatusResponse);
+    rpc HireCandidate(CandidateRequest) returns (HireStatusResponse);
 }
 
 message CandidateRequest {
@@ -28,7 +28,7 @@ message CandidateInfo {
     int32 listing_id = 6;
 }
 
-message StatusResponse {
+message HireStatusResponse {
     bool success = 1;
     string message = 2;
 }
