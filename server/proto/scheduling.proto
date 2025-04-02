@@ -3,8 +3,11 @@ syntax = "proto3";
 package scheduling;
 
 service SchedulingService {
-    // Simple
+    // unary
     rpc ScheduleInterview (InterviewRequest) returns (InterviewResponse);
+
+    // server streaming
+    rpc GetInterviews (InterviewRequest) returns (stream InterviewResponse);
 }
 
 message InterviewRequest {

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package jobListing;
+
+service JobListingService {
+    // client-streaming
+    rpc AddListings (stream AddListingRequest) returns (ListingResponse);
+
+    // server-streaming
+    rpc GetAllListings (Empty) returns (stream ListingResponse);
+
+    // unary
+    rpc DeactivateListing(DeactivateListingRequest) returns (ListingResponse);
+}
+
+message AddListingRequest {
+    string job_title = 1;
+}
+
+message ListingResponse {
+    int32 listing_id = 1;
+    string job_title = 2;
+    string status = 3;
+    boolean active = 4;
+}
+
+message DeactivateListingRequest {
+    int32 listing_id = 1;
+}
+
+message Empty {}
