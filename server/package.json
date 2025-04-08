@@ -8,5 +8,9 @@
   "keywords": [],
   "author": "Conor Bowles",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.13.2",
+    "@grpc/proto-loader": "^0.7.13"
+  }
 }

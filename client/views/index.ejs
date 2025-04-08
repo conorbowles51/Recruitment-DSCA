@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recruitment DSCA</title>
+  <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <header>
+    <h1>Recruitment DSCA</h1>
+  </header>
+  <main>
+    <form id="filter-form" method="GET" action="/">
+      <label>
+        Filter by minimum years of experience
+        <input type="number" id="filter-input" name="experienceFilter" value="0" />
+        <button type="submit">Filter</button>
+      </label>
+    </form>
+    <% if (candidates && candidates.length > 0) { %>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Experience (Years)</th>
+              <th>Application Status</th>
+              <th>Listing ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% candidates.forEach(candidate => { %>
+              <tr>
+                <td><%= candidate.candidateId %></td>
+                <td><%= candidate.name %></td>
+                <td><%= candidate.email %></td>
+                <td><%= candidate.experience %></td>
+                <td><%= candidate.status %></td>
+                <td><%= candidate.listingId %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } else { %>
+      <p>No candidates found.</p>
+    <% } %>
+  </main>
+  <footer>
+    <p>&copy; 2025 Recruitment DSCA</p>
+  </footer>
+</body>
+</html>
