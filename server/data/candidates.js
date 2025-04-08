@@ -1,4 +1,4 @@
-export const candidates = [{"candidateId":0,"name":"Roseann Di Filippo","email":"rdi5j@cyberchimps.com","experience":5,"status":"pending","listingId":3},
+const candidates = [{"candidateId":0,"name":"Roseann Di Filippo","email":"rdi5j@cyberchimps.com","experience":5,"status":"pending","listingId":3},
     {"candidateId":1,"name":"Richardo Water","email":"rwater0@dell.com","experience":15,"status":"pending","listingId":3},
     {"candidateId":2,"name":"Alidia Elletson","email":"aelletson1@live.com","experience":8,"status":"pending","listingId":0},
     {"candidateId":3,"name":"Janot Bateman","email":"jbateman2@tripadvisor.com","experience":1,"status":"pending","listingId":5},
@@ -198,3 +198,5 @@ export const candidates = [{"candidateId":0,"name":"Roseann Di Filippo","email":
     {"candidateId":197,"name":"Bren Saura","email":"bsaura5g@cloudflare.com","experience":1,"status":"pending","listingId":0},
     {"candidateId":198,"name":"Genvieve Colombier","email":"gcolombier5h@hhs.gov","experience":8,"status":"pending","listingId":2},
     {"candidateId":199,"name":"Wainwright Doswell","email":"wdoswell5i@elegantthemes.com","experience":6,"status":"pending","listingId":1}]
+
+module.exports = candidates;

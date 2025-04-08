@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package hiring;
+package candidate;
 
-service HiringService {
+service CandidateService {
     // server streaming
-    rpc SearchCandidates(stream CandidateSearchRequest) returns (stream CandidateInfo);
+    rpc SearchCandidates(CandidateSearchRequest) returns (stream CandidateInfo);
 
     // bi-directional streaming
     rpc HireCandidate(CandidateRequest) returns (HireStatusResponse);
@@ -16,7 +16,6 @@ message CandidateRequest {
 
 message CandidateSearchRequest {
     int32 experience = 1;
-    string job_title = 2;
 }
 
 message CandidateInfo {

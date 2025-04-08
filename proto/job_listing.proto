@@ -21,7 +21,6 @@ message ListingResponse {
     int32 listing_id = 1;
     string job_title = 2;
     string status = 3;
-    boolean active = 4;
 }
 
 message DeactivateListingRequest {
