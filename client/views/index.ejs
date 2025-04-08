@@ -13,10 +13,14 @@
   <main>
     <form id="filter-form" method="GET" action="/">
       <label>
-        Filter by minimum years of experience
-        <input type="number" id="filter-input" name="experienceFilter" value="0" />
-        <button type="submit">Filter</button>
+        Min years of experience:
+        <input type="number" id="experienceFilter" name="experienceFilter" value="0" />
       </label>
+      <label>
+        Listing ID:
+        <input type="number" id="listingFilter" name="listingFilter" value="0" />
+      </label>
+      <button type="submit">Filter</button>
     </form>
     <% if (candidates && candidates.length > 0) { %>
       <div class="table-container">
@@ -48,9 +52,10 @@
     <% } else { %>
       <p>No candidates found.</p>
     <% } %>
+    <div class="right-column">
+      <a href="/interviews" class="box">View Interviews</a>
+      <a href="/job-listings" class="box">View Job Listings</a>
+    </div>
   </main>
-  <footer>
-    <p>&copy; 2025 Recruitment DSCA</p>
-  </footer>
 </body>
 </html>
