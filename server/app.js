@@ -10,8 +10,15 @@ const candidates = require("./data/candidates.js");
 
 const searchCandidates = (call) => {
     const experience = call.request.experience;
+    const listingId = call.request.listingId;
 
-    const result = candidates.filter(cand => cand.experience >= experience);
+    let cands = candidates;
+    
+    if(listingId !== -1){
+        cands = candidates.filter(cand => cand.listingId === listingId);
+    }
+
+    const result = cands.filter(cand => cand.experience >= experience);
 
     result.forEach(cand => {
         call.write(cand);

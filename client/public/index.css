@@ -1,115 +1,171 @@
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #64748b;
+    --neutral-50: #f8fafc;
+    --neutral-100: #f1f5f9;
+    --neutral-200: #e2e8f0;
+    --neutral-700: #334155;
+    --neutral-800: #1e293b;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #2c3e50;
-    line-height: 1.6;
+    background-color: var(--neutral-100);
+    color: var(--neutral-800);
+    line-height: 1.5;
 }
 
 header {
-    background-color: #34495e;
-    color: #ecf0f1;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--neutral-200);
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--neutral-800);
+    max-width: 1600px; /* Match main's width */
+    margin: 0 auto;
+    padding: 0 2rem; /* Match main's padding */
 }
 
 main {
-    padding: 20px;
-    max-width: 100%;
-    margin: 0 20px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+    max-width: 1600px; /* Increased from 1280px */
+    margin: 2rem auto;
+    padding: 0 2rem; /* Increased padding */
+    display: grid;
+    grid-template-columns: 350px 1fr 250px; /* Increased column widths */
+    gap: 2rem;
+    align-items: start;
 }
 
 form#filter-form {
-    flex: 0 0 300px;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    background-color: #ffffff;
-    padding: 20px;
-    border: 1px solid #dcdde1;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 1.25rem;
 }
 
 form#filter-form label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #2c3e50;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--neutral-700);
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0.5rem;
 }
 
-form#filter-form input{
-    padding: 10px;
-    border: 1px solid #bdc3c7;
-    border-radius: 4px;
-    width: 150px;
-    font-size: 1rem;
-    color: #2c3e50;
-    background-color: #ecf0f1;
+form#filter-form input[type="number"] {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--neutral-200);
+    border-radius: 0.375rem;
+    width: 80%;
+    font-size: 0.875rem;
+    color: var(--neutral-800);
+    background-color: white;
+    transition: border-color 0.15s ease;
+}
+
+form#filter-form input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
 }
 
 form#filter-form button {
-    padding: 10px 20px;
-    background-color: #34495e;
-    color: #ffffff;
+    padding: 0.625rem 1rem;
+    background-color: var(--primary);
+    color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 0.375rem;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
 }
 
 form#filter-form button:hover {
-    background-color: #2c3e50;
-    transform: scale(1.05);
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
 }
 
 .table-container {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
     flex: 1;
-    max-height: 700px;
-    overflow-y: auto;
-    border: 1px solid #dcdde1;
-    border-radius: 8px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding: 0; /* Remove padding from container */
     display: flex;
     flex-direction: column;
+    max-height: 700px; /* Set maximum height to enable scrolling */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    table-layout: fixed; /* Keep fixed layout for column widths */
 }
 
-th, td {
-    border: 1px solid #dcdde1;
-    padding: 12px;
-    text-align: left;
-    color: #2c3e50;
+thead {
+    position: sticky; /* Make headers stick to top while scrolling */
+    top: 0;
+    background-color: white;
+    z-index: 1;
 }
 
 th {
-    background-color: #34495e;
-    color: #ffffff;
-    font-weight: bold;
-    text-transform: uppercase;
+    background-color: white;
+    border-bottom: 2px solid var(--neutral-200); /* Make header border more distinct */
+    text-align: left;
+    font-weight: 500;
+    color: var(--neutral-700);
+}
+
+th, td {
+    padding: 0.75rem 1.5rem; /* Consistent padding for all cells */
+    border-bottom: 1px solid var(--neutral-200);
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+}
+
+/* Column width distribution with consistent alignment */
+th:nth-child(1), td:nth-child(1) { 
+    width: 8%; 
+    padding-left: 1.5rem;
+}
+th:nth-child(2), td:nth-child(2) { 
+    width: 20%;
+    padding-left: 1.5rem;
+}
+th:nth-child(3), td:nth-child(3) { 
+    width: 25%;
+    padding-left: 1.5rem;
+}
+th:nth-child(4), td:nth-child(4) { 
+    width: 15%;
+    padding-left: 1.5rem;
+}
+th:nth-child(5), td:nth-child(5) { 
+    width: 17%;
+    padding-left: 1.5rem;
+}
+th:nth-child(6), td:nth-child(6) { 
+    width: 15%;
+    padding-left: 1.5rem;
 }
 
 tbody tr:nth-child(even) {
@@ -117,15 +173,14 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-    background-color: #dcdde1;
-    transition: background-color 0.3s ease;
+    background-color: var(--neutral-50);
 }
 
 .right-column {
-    flex: 0 0 200px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 1rem;
+    flex: 0 0 200px;
     justify-content: space-between;
     height: auto;
     align-self: stretch;
@@ -135,21 +190,24 @@ tbody tr:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px;
-    background-color: #34495e;
-    color: #ffffff;
+    padding: 1rem;
+    background-color: white;
+    color: var(--neutral-700);
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    transition: all 0.15s ease;
+    border: 1px solid var(--neutral-200);
     flex: 1;
 }
 
 .box:hover {
-    background-color: #2c3e50;
-    transform: scale(1.05);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+    color: var(--primary);
+    border-color: var(--primary);
 }
 
 p {
@@ -159,23 +217,44 @@ p {
     margin-top: 20px;
 }
 
-@media (max-width: 768px) {
+.listing-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--neutral-200);
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.checkbox-label {
+    font-size: 0.9rem;
+    color: #2c3e50;
+}
+
+@media (max-width: 1024px) {
     main {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
-    form#filter-form {
-        width: 100%;
-    }
-
-    .table-container {
-        width: 100%;
+    form#filter-form, .right-column {
+        max-width: 100%;
     }
 
     .right-column {
         flex-direction: row;
-        gap: 10px;
-        height: auto;
     }
 
     .box {

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recruitment DSCA</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="/index.css">
 </head>
 <body>
@@ -18,7 +19,12 @@
       </label>
       <label>
         Listing ID:
-        <input type="number" id="listingFilter" name="listingFilter" value="0" />
+        <div class="listing-input-group">
+          <input type="number" id="listingFilter" name="listingFilter" value="0" />
+          <div class="checkbox-wrapper">
+            <input type="checkbox" id="listingCheckbox" name="listingCheckbox" value="false">
+          </div>
+        </div>
       </label>
       <button type="submit">Filter</button>
     </form>
@@ -30,8 +36,7 @@
               <th>ID</th>
               <th>Name</th>
               <th>Email</th>
-              <th>Experience (Years)</th>
-              <th>Application Status</th>
+              <th>Experience</th>
               <th>Listing ID</th>
             </tr>
           </thead>
@@ -42,7 +47,6 @@
                 <td><%= candidate.name %></td>
                 <td><%= candidate.email %></td>
                 <td><%= candidate.experience %></td>
-                <td><%= candidate.status %></td>
                 <td><%= candidate.listingId %></td>
               </tr>
             <% }) %>

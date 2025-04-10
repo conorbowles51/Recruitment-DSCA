@@ -16,6 +16,7 @@ message CandidateRequest {
 
 message CandidateSearchRequest {
     int32 experience = 1;
+    int32 listingId = 2;
 }
 
 message CandidateInfo {

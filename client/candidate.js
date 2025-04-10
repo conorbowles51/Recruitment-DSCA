@@ -9,9 +9,9 @@ class candidateService {
         this.service = new proto.CandidateService(`localhost:${port}`, grpc.credentials.createInsecure());
     }
 
-    searchCandidates(experience){
+    searchCandidates(experience, listingId){
         return new Promise((resolve, reject) => {
-            const request = { experience };
+            const request = { experience, listingId };
             const call = this.service.searchCandidates(request);
     
             const candidates = [];
