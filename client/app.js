@@ -16,8 +16,10 @@ app.set("views", path.join(__dirname, "views"));
 app.get('/', async (req, res) => {
     try {
         const minExperience = req.query.experienceFilter ? parseInt(req.query.experienceFilter) : 0;
-        const listingId = req.query.listingFilter ? parseInt(req.query.listingFilter) : -1;
-        console.log(req.query.experienceFilter);
+
+        const wantsToFilterListing = (req.query.listingCheckbox && req.query.listingFilter) || false;
+        const listingId = wantsToFilterListing ? parseInt(req.query.listingFilter) : -1;
+
         const candidates = await candidateServ.searchCandidates(minExperience, listingId);
         res.render("index", { candidates });
     } catch (err) {
