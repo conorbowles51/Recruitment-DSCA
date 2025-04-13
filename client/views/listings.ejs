@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Listings - Recruitment DSCA</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/listings.css">
+</head>
+<body>
+  <header>
+    <h1>Job Listings</h1>
+  </header>
+  <main>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Listing ID</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% listings.forEach(listing => { %>
+            <tr>
+              <td><%= listing.listingId %></td>
+              <td><%= listing.jobTitle %></td>
+              <td>
+                <span class="status-badge <%= listing.status %>"><%= listing.status %></span>
+              </td>
+              <td class="actions-cell">
+                <a href="/?listingFilter=<%= listing.listingId %>&listingCheckbox=on" class="action-btn view-btn">View Candidates</a>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <div class="right-column">
+      <a href="/" class="box">Back to Candidates</a>
+    </div>
+  </main>
+</body>
+</html>

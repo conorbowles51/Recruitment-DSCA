@@ -22,7 +22,7 @@
         <div class="listing-input-group">
           <input type="number" id="listingFilter" name="listingFilter" value="0" />
           <div class="checkbox-wrapper">
-            <input type="checkbox" id="listingCheckbox" name="listingCheckbox" value="false">
+            <input type="checkbox" id="listingCheckbox" name="listingCheckbox">
           </div>
         </div>
       </label>
@@ -38,6 +38,7 @@
               <th>Email</th>
               <th>Experience</th>
               <th>Listing ID</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +49,10 @@
                 <td><%= candidate.email %></td>
                 <td><%= candidate.experience %></td>
                 <td><%= candidate.listingId %></td>
+                <td class="actions-cell">
+                  <button class="action-btn hire-btn">Hire</button>
+                  <button class="action-btn schedule-btn">Schedule Interview</button>
+                </td>
               </tr>
             <% }) %>
           </tbody>
@@ -58,7 +63,7 @@
     <% } %>
     <div class="right-column">
       <a href="/interviews" class="box">View Interviews</a>
-      <a href="/job-listings" class="box">View Job Listings</a>
+      <a href="/listings" class="box">View Job Listings</a>
     </div>
   </main>
 </body>
