@@ -30,6 +30,19 @@ class candidateService {
             });
         });
     }
+
+    hireCandidate(candidateId) {
+        return new Promise((resolve, reject) => {
+            this.service.hireCandidate({ candidateId }, (err, resp) => {
+                if(err) {
+                    console.log("Error hiring candidate " + candidateId);
+                    reject(err);
+                    return;
+                }
+                resolve(resp);
+            });
+        });
+    }
 }
 
 module.exports = candidateService;

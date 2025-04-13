@@ -14,7 +14,8 @@ class listingService {
         
         server.addService(listingProto.JobListingService.service, {
             GetAllListings: this.getAllListings,
-            AddListings: this.addListings
+            AddListings: this.addListings,
+            CloseListing: this.closeListing
         });
         
         server.bindAsync('127.0.0.1:50052', grpc.ServerCredentials.createInsecure(), () => {
@@ -48,6 +49,31 @@ class listingService {
             console.error("Error in createListings:", error);
             callback(error);
         });
+    }
+
+    closeListing = (call, callback) => {
+        try {
+            const listingId = call.request.listingId;
+
+            if(!listings[listingId]){
+                callback({
+                    code: grpc.status.NOT_FOUND,
+                    message: `Listing with ID ${listingId} not found`
+                });
+
+                return;
+            }
+
+            listings[listingId].status = "closed";
+            callback(null, {});
+
+        } catch  (error) {
+            console.error("Error closing listing:", error);
+            callback({
+                code: grpc.status.INTERNAL,
+                message: "Internal server error while closing listing"
+            });
+        }
     }
 }
 

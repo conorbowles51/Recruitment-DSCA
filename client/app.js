@@ -27,6 +27,7 @@ app.get('/', async (req, res) => {
         const listingId = wantsToFilterListing ? parseInt(req.query.listingFilter) : -1;
 
         const candidates = await candidateServ.searchCandidates(minExperience, listingId);
+        
         res.render("index", { candidates });
     } catch (err) {
         console.error("Error fetching candidates:", err);
@@ -57,6 +58,21 @@ app.post('/listings', async (req, res) => {
     } catch (err) {
         console.error("Error creating listings: ", err);
         res.status(500).send("Error creating listings");
+    }
+});
+
+app.post('/hire', async (req, res) => {
+    try {
+        const candidateId = req.body.candidateId;
+        const listingId = req.body.listingId;
+
+        await candidateServ.hireCandidate(candidateId);
+        await listingServ.closeListing(listingId);
+
+        res.redirect('/');
+    } catch (err) {
+        console.error("Error hiring candidate: ", err);
+        res.status(500).send("Error hiring candidate");
     }
 });
 

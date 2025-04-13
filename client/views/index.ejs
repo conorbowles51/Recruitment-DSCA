@@ -35,7 +35,7 @@
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Email</th>
+              <th>Status</th>
               <th>Experience</th>
               <th>Listing ID</th>
               <th>Actions</th>
@@ -46,11 +46,19 @@
               <tr>
                 <td><%= candidate.candidateId %></td>
                 <td><%= candidate.name %></td>
-                <td><%= candidate.email %></td>
+                <td>
+                  <span class="status-badge <%= candidate.status %>">
+                    <%= candidate.status %>
+                  </span>
+                </td>
                 <td><%= candidate.experience %></td>
                 <td><%= candidate.listingId %></td>
                 <td class="actions-cell">
-                  <button class="action-btn hire-btn">Hire</button>
+                  <form action="/hire" method="POST" style="display: inline;">
+                    <input type="hidden" name="candidateId" value="<%= candidate.candidateId %>">
+                    <input type="hidden" name="listingId" value="<%= candidate.listingId %>">
+                    <button type="submit" class="action-btn hire-btn">Hire</button>
+                  </form>
                   <button class="action-btn schedule-btn">Schedule Interview</button>
                 </td>
               </tr>

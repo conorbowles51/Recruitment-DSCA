@@ -10,7 +10,7 @@ service JobListingService {
     rpc GetAllListings (Empty) returns (stream ListingResponse);
 
     // unary
-    rpc DeactivateListing(DeactivateListingRequest) returns (ListingResponse);
+    rpc CloseListing(CloseListingRequest) returns (Empty);
 }
 
 message AddListingRequest {
@@ -18,13 +18,13 @@ message AddListingRequest {
 }
 
 message ListingResponse {
-    int32 listing_id = 1;
-    string job_title = 2;
+    int32 listingId = 1;
+    string jobTitle = 2;
     string status = 3;
 }
 
-message DeactivateListingRequest {
-    int32 listing_id = 1;
+message CloseListingRequest {
+    int32 listingId = 1;
 }
 
 message Empty {}

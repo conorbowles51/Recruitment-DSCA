@@ -13,7 +13,8 @@ class candidateService {
         const server = new grpc.Server();
 
         server.addService(candidateProto.CandidateService.service, {
-            SearchCandidates: this.searchCandidates
+            SearchCandidates: this.searchCandidates,
+            HireCandidate: this.hireCandidate
         });
 
         server.bindAsync('127.0.0.1:50051', grpc.ServerCredentials.createInsecure(), () => {
@@ -24,7 +25,7 @@ class candidateService {
     searchCandidates = (call) => {
         const experience = call.request.experience;
         const listingId = call.request.listingId;
-    
+        
         let cands = candidates;
         
         if(listingId !== -1){
@@ -38,6 +39,31 @@ class candidateService {
         });
     
         call.end();
+    }
+
+    hireCandidate = (call, callback) => {
+        try {
+            const candId = call.request.candidateId;
+
+            if(!candidates[candId]){
+                callback({
+                    code: grpc.status.NOT_FOUND,
+                    message: `Candidate with ID ${candidateId} not found`
+                });
+
+                return;
+            }
+
+            candidates[candId].status = "hired";
+            callback(null, {});
+
+        } catch  (error) {
+            console.error("Error hiring candidate:", error);
+            callback({
+                code: grpc.status.INTERNAL,
+                message: "Internal server error while hiring candidate"
+            });
+        }
     }
     
 }

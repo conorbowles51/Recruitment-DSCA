@@ -54,6 +54,19 @@ class listingService {
             }
         });
     }
+
+    closeListing(listingId) {
+        return new Promise((resolve, reject) => {
+            this.service.CloseListing({ listingId }, (err, resp) => {
+                if(err) {
+                    console.log("Error closing listing " + listingId);
+                    reject(err);
+                    return;
+                }
+                resolve(resp);
+            })
+        });
+    }
 }
 
 module.exports = listingService;
