@@ -38,8 +38,40 @@
         </tbody>
       </table>
     </div>
-    <div class="right-column">
-      <a href="/" class="box">Back to Candidates</a>
+    
+    <div class="form-wrapper">
+      <div class="create-listing-form">
+        <h2>Create New Job Listings</h2>
+        <form action="/listings" method="POST" class="add-listing-form">
+          <div class="form-group">
+            <label for="jobTitle">Job Title:</label>
+            <input 
+              type="text" 
+              id="jobTitle" 
+              name="jobTitle" 
+              required 
+              placeholder="e.g. Software Engineer"
+            >
+          </div>
+          <div class="form-group">
+            <label for="quantity">Number of Listings:</label>
+            <input 
+              type="number" 
+              id="quantity" 
+              name="quantity" 
+              min="1" 
+              max="10" 
+              value="1" 
+              required
+            >
+          </div>
+          <button type="submit" class="submit-btn">Create Listings</button>
+        </form>
+      </div>
+
+      <div class="right-column">
+        <a href="/" class="box">Back to Candidates</a>
+      </div>
     </div>
   </main>
 </body>

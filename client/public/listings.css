@@ -41,7 +41,8 @@ main {
     margin: 2rem auto;
     padding: 0 2rem;
     display: grid;
-    grid-template-columns: 1fr 250px;
+    /* Change to 2 columns instead of 3 */
+    grid-template-columns: 2fr 1fr;
     gap: 2rem;
     align-items: start;
 }
@@ -56,7 +57,16 @@ main {
     padding: 0;
     display: flex;
     flex-direction: column;
+    height: 100%;
     max-height: 700px;
+}
+
+/* Create a wrapper for the form and back button */
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 700px;  /* Match table height exactly */
 }
 
 table {
@@ -146,21 +156,25 @@ td {
     transform: translateY(-1px);
 }
 
+/* Move .right-column styles to be part of form wrapper */
 .right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    margin-top: 0;
 }
 
 .box {
     background-color: white;
-    padding: 1rem;
+    padding: 0.75rem 1.5rem;  /* Match form padding */
     border-radius: 0.5rem;
     box-shadow: var(--shadow);
     text-decoration: none;
     color: var(--neutral-800);
     font-weight: 500;
     transition: all 0.15s ease;
+    width: calc(100% - 3rem);  /* Subtract total horizontal padding */
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .box:hover {
@@ -181,7 +195,80 @@ tbody tr:hover {
         grid-template-columns: 1fr;
     }
     
-    .right-column {
-        flex-direction: row;
+    .form-wrapper {
+        gap: 1rem;
     }
+
+    .create-listing-form {
+        margin-top: 0;
+    }
+}
+
+.create-listing-form {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow);
+    height: calc(100% - 52px); /* Subtract the height of the back button (36px) and gap (16px) */
+    display: flex;
+    flex-direction: column;
+}
+
+.create-listing-form h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    color: var(--neutral-800);
+}
+
+.add-listing-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;  /* Increase margin between form groups */
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--neutral-700);
+}
+
+.form-group input {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--neutral-200);
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    color: var(--neutral-800);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 1px var(--primary);
+}
+
+.submit-btn {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    margin-top: auto;  /* Push button to bottom */
+    margin-bottom: 0;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
 }

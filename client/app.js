@@ -9,6 +9,11 @@ const listingServ = new listingService(path.join(__dirname, "../proto/job_listin
 
 const app = express();
 
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
@@ -36,6 +41,22 @@ app.get('/listings', async (req, res) => {
     } catch (err) {
         console.error("Error fetching listings: ", err);
         res.status(500).send("Error fetching listings");
+    }
+});
+
+app.post('/listings', async (req, res) => {
+    try {
+        const { jobTitle, quantity } = req.body;
+        
+        const numListings = parseInt(quantity);
+        
+        await listingServ.createListings(jobTitle, numListings);
+        
+        
+        res.redirect('/listings');
+    } catch (err) {
+        console.error("Error creating listings: ", err);
+        res.status(500).send("Error creating listings");
     }
 });
 

@@ -4,7 +4,7 @@ package jobListing;
 
 service JobListingService {
     // client-streaming
-    rpc AddListings (stream AddListingRequest) returns (ListingResponse);
+    rpc AddListings (stream AddListingRequest) returns (Empty);
 
     // server-streaming
     rpc GetAllListings (Empty) returns (stream ListingResponse);
@@ -14,7 +14,7 @@ service JobListingService {
 }
 
 message AddListingRequest {
-    string job_title = 1;
+    string jobTitle = 1;
 }
 
 message ListingResponse {

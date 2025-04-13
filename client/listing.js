@@ -29,6 +29,31 @@ class listingService {
             });
         });
     }
+
+    createListings(jobTitle, numListings) {
+        return new Promise((resolve, reject) => {
+            const call = this.service.AddListings((err, resp) => {
+                if(err) {
+                    console.error("Error creating listings:", err);
+                    reject(err);
+                    return;
+                }
+
+                resolve(resp);
+            });
+
+            
+            try {
+                for (let i = 0; i < numListings; i++) {
+                    call.write({ jobTitle: jobTitle });
+                }
+                call.end();
+            } catch (error) {
+                console.error("Error sending listings:", error);
+                reject(error);
+            }
+        });
+    }
 }
 
 module.exports = listingService;
