@@ -8,27 +8,38 @@
     <link rel="stylesheet" href="/schedule.css">
 </head>
 <body>
+    <header class="page-header">
+        <div class="header-content">
+            <h1>Schedule Interview</h1>
+        </div>
+    </header>
     <main>
-        <div class="form-wrapper">
-            <div class="create-listing-form">
-                <h1>Schedule Interview</h1>
-                
-                <div class="candidate-info">
+        <div class="layout-wrapper">
+            <div class="left-column">
+                <div class="candidate-panel">
                     <h2>Candidate Details</h2>
-                    <p><strong>Name:</strong> <%= candidate.name %></p>
-                    <p><strong>Experience:</strong> <%= candidate.experience %> years</p>
-                    <p><strong>Current Status:</strong> 
-                        <span class="status-badge <%= candidate.status %>">
-                            <%= candidate.status %>
-                        </span>
-                    </p>
+                    <div class="candidate-info">
+                        <p><strong>Name:</strong> <%= candidate.name %></p>
+                        <p><strong>Experience:</strong> <%= candidate.experience %> years</p>
+                        <p><strong>Current Status:</strong> 
+                            <span class="status-badge <%= candidate.status %>">
+                                <%= candidate.status %>
+                            </span>
+                        </p>
+                        <p><strong>Email:</strong> <%= candidate.email %></p>
+                        <p><strong>Listing ID:</strong> <%= candidate.listingId %></p>
+                    </div>
                 </div>
+                <a href="/" class="back-link">Back to Candidates</a>
+            </div>
 
-                <form action="/schedule" method="POST" class="schedule-form">
+            <div class="form-panel">
+                <h2>Schedule Interview</h2>
+                <form action="/schedule" method="POST">
                     <input type="hidden" name="candidateId" value="<%= candidate.candidateId %>">
                     
                     <div class="form-group">
-                        <label for="interviewDate">Interview Date:</label>
+                        <label for="interviewDate">Interview Date</label>
                         <input 
                             type="date" 
                             id="interviewDate" 
@@ -39,7 +50,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="interviewTime">Interview Time:</label>
+                        <label for="interviewTime">Interview Time</label>
                         <input 
                             type="time" 
                             id="interviewTime" 
@@ -49,7 +60,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="interviewType">Interview Type:</label>
+                        <label for="interviewType">Interview Type</label>
                         <select id="interviewType" name="interviewType" required>
                             <option value="online">Online</option>
                             <option value="in-person">In Person</option>
@@ -58,7 +69,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="interviewer">Interviewer:</label>
+                        <label for="interviewer">Interviewer</label>
                         <input 
                             type="text" 
                             id="interviewer" 
@@ -68,21 +79,9 @@
                         >
                     </div>
 
-                    <div class="form-group">
-                        <label for="notes">Additional Notes:</label>
-                        <textarea 
-                            id="notes" 
-                            name="notes" 
-                            rows="4"
-                            placeholder="Add any additional notes or requirements"
-                        ></textarea>
-                    </div>
-
                     <button type="submit" class="submit-btn">Schedule Interview</button>
                 </form>
             </div>
-
-            <a href="/" class="box">Back to Candidates</a>
         </div>
     </main>
 </body>

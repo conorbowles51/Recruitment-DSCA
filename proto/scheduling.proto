@@ -4,21 +4,21 @@ package scheduling;
 
 service SchedulingService {
     // unary
-    rpc ScheduleInterview (InterviewRequest) returns (InterviewResponse);
+    rpc ScheduleInterview (InterviewInfo) returns (Empty);
 
     // server streaming
-    rpc GetInterviews (InterviewRequest) returns (stream InterviewResponse);
+    rpc GetAllInterviews (Empty) returns (stream InterviewInfo);
 }
 
-message InterviewRequest {
-    int32 candidate_id = 1;
+message InterviewInfo {
+    int32 candidateId = 1;
     string date = 2;
     string time = 3;
+    string type = 4;
+    string interviewer = 5;
+    string status = 6;
 }
 
-message InterviewResponse {
-    string status = 1;
-    string date = 2;
-    string time = 3;
-}
+
+message Empty {}
 

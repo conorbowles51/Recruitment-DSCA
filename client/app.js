@@ -3,9 +3,11 @@ const path = require("path");
 
 const candidateService = require("./candidate.js");
 const listingService = require("./listing.js");
+const interviewService = require("./interview.js");
 
 const candidateServ = new candidateService(path.join(__dirname, "../proto/candidate.proto"), 50051);
 const listingServ = new listingService(path.join(__dirname, "../proto/job_listing.proto"), 50052);
+const interviewServ = new interviewService(path.join(__dirname, "../proto/scheduling.proto"), 50053);
 
 const app = express();
 
@@ -73,6 +75,19 @@ app.post('/hire', async (req, res) => {
     } catch (err) {
         console.error("Error hiring candidate: ", err);
         res.status(500).send("Error hiring candidate");
+    }
+});
+
+app.get('/interviews', async (_req, res) => {
+    try {
+        const interviews = await interviewServ.getAllInterviews();
+
+        console.log(interviews[0])
+        
+        res.render("interviews", { interviews });
+    } catch (err) {
+        console.error("Error fetching interviews:", err);
+        res.status(500).send("Error fetching interviews");
     }
 });
 

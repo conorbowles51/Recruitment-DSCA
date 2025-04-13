@@ -316,6 +316,36 @@ p {
     color: #651616;
 }
 
+.status-badge.scheduled {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.status-badge.completed {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.cancelled {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.action-btn.complete-btn {
+    background-color: #22c55e;
+}
+
+.action-btn.complete-btn:hover {
+    background-color: #16a34a;
+}
+
+.action-btn.cancel-btn {
+    background-color: #ef4444;
+}
+
+.action-btn.cancel-btn:hover {
+    background-color: #dc2626;
+}
 
 @media (max-width: 1024px) {
     main {
