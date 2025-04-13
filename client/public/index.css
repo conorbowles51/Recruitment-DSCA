@@ -306,6 +306,17 @@ p {
     color: #166534;
 }
 
+.status-badge.interviewing {
+    background-color: #dce3fc;
+    color: #161765;
+}
+
+.status-badge.rejected {
+    background-color: #fcdcdc;
+    color: #651616;
+}
+
+
 @media (max-width: 1024px) {
     main {
         grid-template-columns: 1fr;

@@ -13,6 +13,7 @@ class candidateService {
         const server = new grpc.Server();
 
         server.addService(candidateProto.CandidateService.service, {
+            GetById: this.getById,
             SearchCandidates: this.searchCandidates,
             HireCandidate: this.hireCandidate
         });
@@ -20,6 +21,30 @@ class candidateService {
         server.bindAsync('127.0.0.1:50051', grpc.ServerCredentials.createInsecure(), () => {
             console.log("CandidateService is running");
         });
+    }
+
+    getById = (call, callback) => {
+        try {
+            const candidateId = parseInt(call.request.candidateId);
+            const candidate = candidates.find(cand => cand.candidateId === candidateId);
+
+            if (!candidate) {
+                callback({
+                    code: grpc.status.NOT_FOUND,
+                    message: `Candidate with ID ${candidateId} not found`
+                });
+                return;
+            }
+
+            callback(null, candidate);
+
+        } catch (error) {
+            console.error("Error getting candidate:", error);
+            callback({
+                code: grpc.status.INTERNAL,
+                message: "Internal server error while getting candidate"
+            });
+        }
     }
 
     searchCandidates = (call) => {
@@ -48,13 +73,24 @@ class candidateService {
             if(!candidates[candId]){
                 callback({
                     code: grpc.status.NOT_FOUND,
-                    message: `Candidate with ID ${candidateId} not found`
+                    message: `Candidate with ID ${candId} not found`
                 });
 
                 return;
             }
 
+            let closedListingId = candidates[candId].listingId;
+
+            candidates.forEach(cand => {
+                if(cand.listingId === closedListingId){
+                    cand.status = "rejected";
+                }
+            })
+
             candidates[candId].status = "hired";
+        
+            
+
             callback(null, {});
 
         } catch  (error) {

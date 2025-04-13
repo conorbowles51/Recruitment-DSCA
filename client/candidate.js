@@ -43,6 +43,19 @@ class candidateService {
             });
         });
     }
+
+    getById(candidateId) {
+        return new Promise((resolve, reject) => {
+            this.service.getById({ candidateId }, (err, resp) => {
+                if(err) {
+                    console.log("Error getting candidate " + candidateId);
+                    reject(err);
+                    return;
+                }
+                resolve(resp);
+            })
+        });
+    }
 }
 
 module.exports = candidateService;

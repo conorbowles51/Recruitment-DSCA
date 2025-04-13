@@ -3,6 +3,8 @@ syntax = "proto3";
 package candidate;
 
 service CandidateService {
+    rpc GetById(CandidateRequest) returns (CandidateInfo);
+
     // server streaming
     rpc SearchCandidates(CandidateSearchRequest) returns (stream CandidateInfo);
 

@@ -76,6 +76,19 @@ app.post('/hire', async (req, res) => {
     }
 });
 
+app.get('/schedule/:candidateId', async (req, res) => {
+    try {
+        const candidateId = parseInt(req.params.candidateId);
+        const candidate = await candidateServ.getById(candidateId);
+
+        res.render("schedule", { candidate });
+
+    } catch (err) {
+        console.error("Error fetching candidate: ", err);
+        res.status(500).send("Error fetching candidate");
+    }
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Client started on http://localhost:${PORT}`);

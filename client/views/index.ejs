@@ -59,7 +59,9 @@
                     <input type="hidden" name="listingId" value="<%= candidate.listingId %>">
                     <button type="submit" class="action-btn hire-btn">Hire</button>
                   </form>
-                  <button class="action-btn schedule-btn">Schedule Interview</button>
+                  <form action="/schedule/<%= candidate.candidateId %>" method="GET" style="display: inline;">
+                    <button type="submit" class="action-btn schedule-btn">Schedule Interview</button>
+                  </form>
                 </td>
               </tr>
             <% }) %>
