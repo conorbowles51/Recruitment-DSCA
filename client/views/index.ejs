@@ -54,14 +54,19 @@
                 <td><%= candidate.experience %></td>
                 <td><%= candidate.listingId %></td>
                 <td class="actions-cell">
+
                   <form action="/hire" method="POST" style="display: inline;">
                     <input type="hidden" name="candidateId" value="<%= candidate.candidateId %>">
                     <input type="hidden" name="listingId" value="<%= candidate.listingId %>">
                     <button type="submit" class="action-btn hire-btn">Hire</button>
                   </form>
+
+                  <% if (candidate.status === "pending") { %>
                   <form action="/schedule/<%= candidate.candidateId %>" method="GET" style="display: inline;">
                     <button type="submit" class="action-btn schedule-btn">Schedule Interview</button>
                   </form>
+                  <% } %>
+
                 </td>
               </tr>
             <% }) %>

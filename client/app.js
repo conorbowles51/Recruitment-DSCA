@@ -93,6 +93,37 @@ app.get('/interviews', async (_req, res) => {
     }
 });
 
+app.post('/interviews/:candidateId/complete', async (req, res) => {
+    try {
+        const candidateId = req.params.candidateId;
+
+        await interviewServ.setStatus(candidateId, "complete");
+        await candidateServ.setStatus(candidateId, "interviewed");
+
+        res.redirect('/interviews');
+    } catch (err) {
+        console.error("Error completing interview:", err);
+        res.status(500).send("Error completing interview");
+    }
+});
+
+
+app.post('/interviews/:candidateId/cancel', async (req, res) => {
+    try {
+        const candidateId = req.params.candidateId;
+
+        await interviewServ.setStatus(candidateId, "canceled");
+        await candidateServ.setStatus(candidateId, "pending");
+
+        res.redirect('/interviews');
+    } catch (err) {
+        console.error("Error cancelling interview:", err);
+        res.status(500).send("Error cancelling interview");
+    }
+});
+
+
+
 app.get('/schedule/:candidateId', async (req, res) => {
     try {
         const candidateId = parseInt(req.params.candidateId);
@@ -140,6 +171,7 @@ app.post('/schedule', async (req, res) => {
         res.status(500).send("Error scheduling interview");
     }
 });
+
 
 const PORT = 3000;
 app.listen(PORT, () => {

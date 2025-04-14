@@ -46,10 +46,10 @@
                                 </td>
                                 <td class="actions-cell">
                                     <% if (interview.status === 'scheduled') { %>
-                                        <form action="/interviews/<%= interview.id %>/complete" method="POST">
+                                        <form action="/interviews/<%= interview.candidateId %>/complete" method="POST">
                                             <button type="submit" class="action-btn complete-btn">Complete</button>
                                         </form>
-                                        <form action="/interviews/<%= interview.id %>/cancel" method="POST">
+                                        <form action="/interviews/<%= interview.candidateId %>/cancel" method="POST">
                                             <button type="submit" class="action-btn cancel-btn">Cancel</button>
                                         </form>
                                     <% } %>

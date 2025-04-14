@@ -14,7 +14,8 @@ class interviewService {
 
         server.addService(schedulingProto.SchedulingService.service, {
             GetAllInterviews: this.getAllInterviews,
-            ScheduleInterview: this.scheduleInterview
+            ScheduleInterview: this.scheduleInterview,
+            SetStatus: this.setStatus
         });
 
         server.bindAsync('127.0.0.1:50053', grpc.ServerCredentials.createInsecure(), () => {
@@ -34,6 +35,19 @@ class interviewService {
         const interview = { ...call.request };
 
         interviews.push(interview);
+
+        callback(null, {});
+    }
+
+    setStatus = (call, callback) => {
+        const candidateId = call.request.candidateId;
+        const status = call.request.status;
+
+        interviews.forEach(interview => {
+            if(interview.candidateId === candidateId){
+                interview.status = status;
+            }
+        })
 
         callback(null, {});
     }
