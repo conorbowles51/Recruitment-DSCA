@@ -52,7 +52,7 @@ main {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0;
-    max-height: 700px;
+    max-height: 650px;
 }
 
 table {
@@ -87,13 +87,14 @@ td {
 }
 
 /* Column width distribution */
-th:nth-child(1), td:nth-child(1) { width: 8%; }  /* Candidate */
-th:nth-child(2), td:nth-child(2) { width: 15%; } /* Date */
-th:nth-child(3), td:nth-child(3) { width: 15%; } /* Time */
-th:nth-child(4), td:nth-child(4) { width: 12%; } /* Type */
-th:nth-child(5), td:nth-child(5) { width: 15%; } /* Interviewer */
-th:nth-child(6), td:nth-child(6) { width: 15%; } /* Status */
-th:nth-child(7), td:nth-child(7) { width: 20%; } /* Actions */
+th:nth-child(1), td:nth-child(1) { width: 8%; }  /* Candidate ID */
+th:nth-child(2), td:nth-child(2) { width: 12%; }  /* Candidate Name */
+th:nth-child(3), td:nth-child(3) { width: 10%; } /* Date */
+th:nth-child(4), td:nth-child(4) { width: 14%; } /* Time */
+th:nth-child(5), td:nth-child(5) { width: 12%; } /* Type */
+th:nth-child(6), td:nth-child(6) { width: 13%; } /* Interviewer */
+th:nth-child(7), td:nth-child(7) { width: 13%; } /* Status */
+th:nth-child(8), td:nth-child(8) { width: 18%; } /* Actions */
 
 .status-badge {
     padding: 0.25rem 0.75rem;

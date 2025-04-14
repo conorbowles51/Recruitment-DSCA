@@ -56,6 +56,19 @@ class candidateService {
             })
         });
     }
+
+    setStatus(candidateId, status) {
+        return new Promise((resolve, reject) => {
+            this.service.setStatus({ candidateId, status }, (err, resp) => {
+                if(err) {
+                    console.log("Error updating candidate " + candidateId);
+                    reject(err);
+                    return;
+                }
+                resolve(resp);
+            });
+        });
+    }
 }
 
 module.exports = candidateService;

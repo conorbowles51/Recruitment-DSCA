@@ -29,6 +29,19 @@ class interviewService {
             });
         });
     }
+
+    scheduleInterview(interview) {
+        return new Promise((resolve, reject) => {
+            this.service.scheduleInterview(interview, (err, resp) => {
+                if(err) {
+                    console.log("Error scheduling interview ");
+                    reject(err);
+                    return;
+                }
+                resolve(resp);
+            })
+        });
+    }
 }
 
 module.exports = interviewService;

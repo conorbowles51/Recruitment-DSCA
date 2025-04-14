@@ -311,6 +311,11 @@ p {
     color: #161765;
 }
 
+.status-badge.interviewed {
+    background-color: #f0dcfc;
+    color: #551665;
+}
+
 .status-badge.rejected {
     background-color: #fcdcdc;
     color: #651616;

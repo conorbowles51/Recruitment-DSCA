@@ -63,6 +63,7 @@ app.post('/listings', async (req, res) => {
     }
 });
 
+
 app.post('/hire', async (req, res) => {
     try {
         const candidateId = req.body.candidateId;
@@ -70,6 +71,7 @@ app.post('/hire', async (req, res) => {
 
         await candidateServ.hireCandidate(candidateId);
         await listingServ.closeListing(listingId);
+
 
         res.redirect('/');
     } catch (err) {
@@ -101,6 +103,41 @@ app.get('/schedule/:candidateId', async (req, res) => {
     } catch (err) {
         console.error("Error fetching candidate: ", err);
         res.status(500).send("Error fetching candidate");
+    }
+});
+
+app.post('/schedule', async (req, res) => {
+    try {
+        const candidateId = req.body.candidateId;
+
+        if(!candidateId){
+            console.error(`Could not schedule interview with candidate ID  ${candidateId} (It does not exist)`);
+        }
+
+        const candidate = await candidateServ.getById(candidateId);
+
+        const interview = {
+            candidateId,
+            candidateName: candidate.name,
+            date: req.body.interviewDate,
+            time: req.body.interviewTime,
+            type: req.body.interviewType,
+            interviewer: req.body.interviewer,
+            status: "scheduled"
+        }
+
+       
+        await interviewServ.scheduleInterview(interview).then(async () => {
+            await candidateServ.setStatus(candidateId, "interviewing");
+        });
+       
+        
+
+        res.redirect('/');
+
+    } catch (err) {
+        console.error("Error scheduling interview: ", err);
+        res.status(500).send("Error scheduling interview");
     }
 });
 

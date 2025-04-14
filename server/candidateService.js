@@ -15,7 +15,8 @@ class candidateService {
         server.addService(candidateProto.CandidateService.service, {
             GetById: this.getById,
             SearchCandidates: this.searchCandidates,
-            HireCandidate: this.hireCandidate
+            HireCandidate: this.hireCandidate,
+            SetStatus: this.setStatus
         });
 
         server.bindAsync('127.0.0.1:50051', grpc.ServerCredentials.createInsecure(), () => {
@@ -98,6 +99,23 @@ class candidateService {
             callback({
                 code: grpc.status.INTERNAL,
                 message: "Internal server error while hiring candidate"
+            });
+        }
+    }
+
+    setStatus = (call, callback) => {
+        try {
+            const candidateId = call.request.candidateId;
+            const status = call.request.status;
+
+            candidates[candidateId].status = status;
+
+            callback(null, {});
+        } catch (error) {
+            console.error("Error updating candidate status:", error);
+            callback({
+                code: grpc.status.INTERNAL,
+                message: "Error updating candidate status"
             });
         }
     }

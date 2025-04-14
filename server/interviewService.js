@@ -13,7 +13,8 @@ class interviewService {
         const server = new grpc.Server();
 
         server.addService(schedulingProto.SchedulingService.service, {
-            GetAllInterviews: this.getAllInterviews
+            GetAllInterviews: this.getAllInterviews,
+            ScheduleInterview: this.scheduleInterview
         });
 
         server.bindAsync('127.0.0.1:50053', grpc.ServerCredentials.createInsecure(), () => {
@@ -27,6 +28,14 @@ class interviewService {
         });
     
         call.end();
+    }
+
+    scheduleInterview = (call, callback) => {
+        const interview = { ...call.request };
+
+        interviews.push(interview);
+
+        callback(null, {});
     }
 }
 

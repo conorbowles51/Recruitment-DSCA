@@ -14,13 +14,14 @@
         </div>
     </header>
 
-    <main>
+    <main>    
         <% if (interviews && interviews.length > 0) { %>
             <div class="table-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Candidate</th>
+                            <th>Candidate ID</th>
+                            <th>Candidate Name</th>
                             <th>Date</th>
                             <th>Time</th>
                             <th>Type</th>
@@ -33,6 +34,7 @@
                         <% interviews.forEach(interview => { %>
                             <tr>
                                 <td><%= interview.candidateId %></td>
+                                <td><%= interview.candidateName %></td>
                                 <td><%= new Date(interview.date).toLocaleDateString() %></td>
                                 <td><%= interview.time %></td>
                                 <td><%= interview.type %></td>
@@ -62,6 +64,7 @@
                 <p>No interviews scheduled yet.</p>
             </div>
         <% } %>
+        <a href="/" class="back-link">← Back to Candidates</a>
     </main>
 </body>
 </html>

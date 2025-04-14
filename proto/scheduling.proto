@@ -12,11 +12,12 @@ service SchedulingService {
 
 message InterviewInfo {
     int32 candidateId = 1;
-    string date = 2;
-    string time = 3;
-    string type = 4;
-    string interviewer = 5;
-    string status = 6;
+    string candidateName = 2;
+    string date = 3;
+    string time = 4;
+    string type = 5;
+    string interviewer = 6;
+    string status = 7;
 }
 
 

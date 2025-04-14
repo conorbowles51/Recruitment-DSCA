@@ -10,6 +10,8 @@ service CandidateService {
 
     // bi-directional streaming
     rpc HireCandidate(CandidateRequest) returns (HireStatusResponse);
+
+    rpc SetStatus(StatusRequest) returns (Empty);
 }
 
 message CandidateRequest {
@@ -33,4 +35,13 @@ message CandidateInfo {
 message HireStatusResponse {
     bool success = 1;
     string message = 2;
+}
+
+
+
+message Empty {}
+
+message StatusRequest {
+    int32 candidateId = 1;
+    string status = 2;
 }
