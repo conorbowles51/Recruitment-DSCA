@@ -13,13 +13,13 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--neutral-100);
     margin: 0;
-    padding: 0;  /* Remove body padding */
+    padding: 0;  
 }
 
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem 2rem;  /* Add horizontal padding to main */
+    padding: 0 2rem 2rem;  
 }
 
 .layout-wrapper {
@@ -173,13 +173,13 @@ main {
     background-color: white;
     box-shadow: var(--shadow);
     margin-bottom: 2rem;
-    padding: 1.5rem 0;  /* Remove horizontal padding */
+    padding: 1.5rem 0; 
 }
 
 .header-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;  /* Add padding to the content instead */
+    padding: 0 2rem;  
 }
 
 .header-content h1 {

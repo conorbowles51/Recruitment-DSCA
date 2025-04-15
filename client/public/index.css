@@ -9,6 +9,11 @@
     --neutral-800: #1e293b;
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --status-pending-bg: #fef3c7;
+    --status-pending-text: #92400e;
+    --status-hired-bg: #dcfce7;
+    --status-hired-text: #166534;
+    // ... etc
 }
 
 body {
@@ -27,21 +32,20 @@ header {
 }
 
 header h1 {
-    margin: 0;
     font-size: 1.875rem;
     font-weight: 600;
     color: var(--neutral-800);
-    max-width: 1600px; /* Match main's width */
-    margin: 0 auto;
-    padding: 0 2rem; /* Match main's padding */
+    max-width: 1600px; 
+    margin: 0 auto; 
+    padding: 0 2rem; 
 }
 
 main {
-    max-width: 1600px; /* Increased from 1280px */
+    max-width: 1600px; 
     margin: 2rem auto;
-    padding: 0 2rem; /* Increased padding */
+    padding: 0 2rem; 
     display: grid;
-    grid-template-columns: 350px 1fr 250px; /* Increased column widths */
+    grid-template-columns: 350px 1fr 250px;
     gap: 2rem;
     align-items: start;
 }
@@ -103,24 +107,24 @@ form#filter-form button:hover {
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: var(--shadow);
-    overflow-y: auto; /* Enable vertical scrolling */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto; 
+    overflow-x: hidden; 
     flex: 1;
-    padding: 0; /* Remove padding from container */
+    padding: 0;
     display: flex;
     flex-direction: column;
-    max-height: 700px; /* Set maximum height to enable scrolling */
+    max-height: 700px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.875rem;
-    table-layout: fixed; /* Keep fixed layout for column widths */
+    table-layout: fixed;
 }
 
 thead {
-    position: sticky; /* Make headers stick to top while scrolling */
+    position: sticky; 
     top: 0;
     background-color: white;
     z-index: 1;
@@ -128,53 +132,54 @@ thead {
 
 th {
     background-color: white;
-    border-bottom: 2px solid var(--neutral-200); /* Make header border more distinct */
+    border-bottom: 2px solid var(--neutral-200);
     text-align: left;
     font-weight: 500;
     color: var(--neutral-700);
 }
 
 th, td {
-    padding: 0.75rem 1.5rem; /* Consistent padding for all cells */
+    padding: 0.75rem 1.5rem; 
     border-bottom: 1px solid var(--neutral-200);
-    white-space: nowrap; /* Prevent text wrapping */
+    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+    text-overflow: ellipsis;
 }
 
-/* Update column width distribution */
 th:nth-child(1), td:nth-child(1) { 
     width: 8%; 
-    padding-left: 1.5rem;
 }
 th:nth-child(2), td:nth-child(2) { 
     width: 20%;
-    padding-left: 1.5rem;
 }
 th:nth-child(3), td:nth-child(3) { 
     width: 25%;
-    padding-left: 1.5rem;
 }
 th:nth-child(4), td:nth-child(4) { 
     width: 12%;
-    padding-left: 1.5rem;
 }
 th:nth-child(5), td:nth-child(5) { 
     width: 15%;
-    padding-left: 1.5rem;
 }
 th:nth-child(6), td:nth-child(6) { 
-    width: 220px; /* Increase width to accommodate buttons */
+    width: 220px; 
     padding: 0.75rem 1.5rem;
+}
+
+th:nth-child(1), td:nth-child(1), th:nth-child(2), td:nth-child(2),
+th:nth-child(3), td:nth-child(3),
+th:nth-child(4), td:nth-child(4),
+th:nth-child(5), td:nth-child(5) {
+    padding-left: 1.5rem;
 }
 
 .actions-cell {
     display: flex;
     gap: 0.5rem;
-    padding: 0.75rem 0; /* Remove left/right padding */
-    justify-content: flex-start; /* Align with header */
+    padding: 0.75rem 0; 
+    justify-content: flex-start;
     align-items: center;
-    min-width: 200px; /* Ensure minimum width for buttons */
+    min-width: 200px; 
 }
 
 .action-btn {
@@ -186,7 +191,7 @@ th:nth-child(6), td:nth-child(6) {
     cursor: pointer;
     transition: all 0.15s ease;
     white-space: nowrap;
-    min-width: 80px; /* Ensure minimum width for button text */
+    min-width: 80px; 
     text-align: center;
 }
 
@@ -287,7 +292,6 @@ p {
     color: #2c3e50;
 }
 
-/* Add status badge styling */
 .status-badge {
     padding: 0.25rem 0.75rem;
     border-radius: 1rem;

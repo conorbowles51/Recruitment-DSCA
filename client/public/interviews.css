@@ -124,7 +124,7 @@ th:nth-child(8), td:nth-child(8) { width: 18%; } /* Actions */
     gap: 0.75rem;
     align-items: center;
     padding: 0.5rem 1rem;
-    min-width: 200px; /* Ensure minimum width for buttons */
+    min-width: 200px; 
 }
 
 .action-btn {
@@ -136,7 +136,7 @@ th:nth-child(8), td:nth-child(8) { width: 18%; } /* Actions */
     cursor: pointer;
     transition: all 0.15s ease;
     text-decoration: none;
-    min-width: 80px; /* Ensure minimum width for button text */
+    min-width: 80px; 
     text-align: center;
     display: inline-flex;
     align-items: center;
