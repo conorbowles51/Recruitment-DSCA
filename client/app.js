@@ -5,6 +5,12 @@ const candidateService = require("./candidate.js");
 const listingService = require("./listing.js");
 const interviewService = require("./interview.js");
 
+const userAccounts = [
+    { username: "admin", password: "password" }
+]
+
+let authenticated = false;
+
 const candidateServ = new candidateService(path.join(__dirname, "../proto/candidate.proto"), 50051);
 const listingServ = new listingService(path.join(__dirname, "../proto/job_listing.proto"), 50052);
 const interviewServ = new interviewService(path.join(__dirname, "../proto/scheduling.proto"), 50053);
@@ -21,7 +27,31 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+app.post('/login', (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    userAccounts.forEach(acc => {
+        if(acc.username == username && acc.password == password) {
+            authenticated = true;
+            res.redirect('/');
+            return;
+        }
+    })
+
+    res.redirect('/login');
+});
+
 app.get('/', async (req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const minExperience = req.query.experienceFilter ? parseInt(req.query.experienceFilter) : 0;
 
@@ -38,6 +68,11 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/listings', async (req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const listings = await listingServ.getAllListings();
         res.render("listings", { listings });
@@ -48,6 +83,11 @@ app.get('/listings', async (req, res) => {
 });
 
 app.post('/listings', async (req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const { jobTitle, quantity } = req.body;
         
@@ -65,6 +105,11 @@ app.post('/listings', async (req, res) => {
 
 
 app.post('/hire', async (req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const candidateId = req.body.candidateId;
         const listingId = req.body.listingId;
@@ -81,6 +126,11 @@ app.post('/hire', async (req, res) => {
 });
 
 app.get('/interviews', async (_req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const interviews = await interviewServ.getAllInterviews();
 
@@ -94,6 +144,11 @@ app.get('/interviews', async (_req, res) => {
 });
 
 app.post('/interviews/:candidateId/complete', async (req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const candidateId = req.params.candidateId;
 
@@ -109,6 +164,11 @@ app.post('/interviews/:candidateId/complete', async (req, res) => {
 
 
 app.post('/interviews/:candidateId/cancel', async (req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const candidateId = req.params.candidateId;
 
@@ -125,6 +185,11 @@ app.post('/interviews/:candidateId/cancel', async (req, res) => {
 
 
 app.get('/schedule/:candidateId', async (req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const candidateId = parseInt(req.params.candidateId);
         const candidate = await candidateServ.getById(candidateId);
@@ -138,6 +203,11 @@ app.get('/schedule/:candidateId', async (req, res) => {
 });
 
 app.post('/schedule', async (req, res) => {
+    if(!authenticated){
+        res.redirect('/login');
+        return;
+    }
+
     try {
         const candidateId = req.body.candidateId;
 
