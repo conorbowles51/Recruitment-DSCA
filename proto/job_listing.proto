@@ -3,13 +3,10 @@ syntax = "proto3";
 package jobListing;
 
 service JobListingService {
-    // client-streaming
     rpc AddListings (stream AddListingRequest) returns (Empty);
 
-    // server-streaming
     rpc GetAllListings (Empty) returns (stream ListingResponse);
 
-    // unary
     rpc CloseListing(CloseListingRequest) returns (Empty);
 }
 

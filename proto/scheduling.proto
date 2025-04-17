@@ -3,10 +3,8 @@ syntax = "proto3";
 package scheduling;
 
 service SchedulingService {
-    // unary
     rpc ScheduleInterview (InterviewInfo) returns (Empty);
 
-    // server streaming
     rpc GetAllInterviews (Empty) returns (stream InterviewInfo);
 
     rpc SetStatus(StatusMessage) returns (Empty);

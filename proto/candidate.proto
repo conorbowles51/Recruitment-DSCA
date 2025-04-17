@@ -5,10 +5,8 @@ package candidate;
 service CandidateService {
     rpc GetById(CandidateRequest) returns (CandidateInfo);
 
-    // server streaming
     rpc SearchCandidates(CandidateSearchRequest) returns (stream CandidateInfo);
 
-    // bi-directional streaming
     rpc HireCandidate(CandidateRequest) returns (HireStatusResponse);
 
     rpc SetStatus(StatusRequest) returns (Empty);
